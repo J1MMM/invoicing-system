@@ -6,9 +6,17 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
+  const [form, setForm] = useState({ username: "", password: "" });
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
     <Box
       sx={{
@@ -21,7 +29,7 @@ const LoginPage = () => {
     >
       <Paper elevation={3} sx={{ padding: 3 }}>
         <Typography
-          variant="h5"
+          variant="h4"
           fontWeight="bold"
           textAlign="center"
           color="primary"
@@ -34,10 +42,10 @@ const LoginPage = () => {
 
         <Stack width={300} mt={2}>
           <TextField
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="your@email.com"
+            label="Username"
+            name="username"
+            value={form.username}
+            onChange={handleFormChange}
             autoComplete="off"
             size="small"
             margin="normal"
@@ -48,6 +56,8 @@ const LoginPage = () => {
           <TextField
             label="Password"
             name="password"
+            value={form.password}
+            onChange={handleFormChange}
             type="password"
             autoComplete="off"
             size="small"
@@ -55,7 +65,6 @@ const LoginPage = () => {
             fullWidth
             required
           />
-
           <Typography fontSize={12} color="primary">
             Forgot Password?
           </Typography>

@@ -21,7 +21,7 @@ function RegisterPage() {
     >
       <Paper elevation={3} sx={{ padding: 5 }}>
         <Typography
-          variant="h5"
+          variant="h4"
           fontWeight="bold"
           textAlign="center"
           color="primary"
@@ -34,20 +34,8 @@ function RegisterPage() {
 
         <Stack width={300} mt={2}>
           <TextField
-            label="Full Name"
-            name="fullname"
-            placeholder="your name"
-            autoComplete="off"
-            size="small"
-            margin="normal"
-            fullWidth
-            required
-          />
-          <TextField
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="your@email.com"
+            label="Username"
+            name="username"
             autoComplete="off"
             size="small"
             margin="normal"
