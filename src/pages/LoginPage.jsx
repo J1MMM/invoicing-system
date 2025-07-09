@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Paper,
@@ -56,11 +57,13 @@ const LoginPage = () => {
         >
           Welcome Back
         </Typography>
-        <Typography variant="body1" textAlign="center">
+        <Typography variant="body1" textAlign="center" mb={2}>
           Log in to access your Invoice Dashboard
         </Typography>
 
-        <Stack width={300} mt={2}>
+        <Alert severity="error">This is an error Alert.</Alert>
+
+        <Stack width={300}>
           <TextField
             label="Username"
             name="username"
