@@ -3,7 +3,7 @@ export const getUsers = () => {
 };
 
 export const saveUser = (user) => {
-  return localStorage.setItem("users", JSON.stringify(user));
+  localStorage.setItem("users", JSON.stringify(user));
 };
 
 export const setToken = () => {
@@ -12,4 +12,8 @@ export const setToken = () => {
 
 export const removeToken = () => {
   localStorage.removeItem("token");
+};
+
+export const isAuthenticated = () => {
+  return !!localStorage.getItem("token");
 };
