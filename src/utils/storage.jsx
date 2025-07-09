@@ -1,5 +1,5 @@
 export const getUsers = () => {
-  return localStorage.getItem("users") || [];
+  return JSON.parse(localStorage.getItem("users")) || [];
 };
 
 export const saveUser = (user) => {

@@ -8,13 +8,12 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { getUsers, setToken } from "../utils/storage";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { getUsers, isAuthenticated, setToken } from "../utils/storage";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: "", password: "" });
-  const [alertShow, setAlertShow] = useState(false);
   const [alertSev, setAlertSev] = useState("success");
   const [alertMsg, setAlertMsg] = useState("");
 
@@ -26,15 +25,28 @@ const LoginPage = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     const users = getUsers();
-    console.log(users);
     const user = users.find(
       (u) => u.username == form.username && u.password == form.password
     );
     if (!user) {
+      setAlertSev("error");
+      setAlertMsg("Invalid Credentials");
+      return;
     }
+
+    setAlertSev("success");
+    setAlertMsg("Login Success");
     setToken();
-    navigate("/");
+    navigate("/", { replace: true });
   };
+
+  useEffect(() => {
+    setAlertMsg("");
+  }, [form]);
+
+  if (isAuthenticated()) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Box
@@ -52,19 +64,21 @@ const LoginPage = () => {
         component="form"
         onSubmit={handleLogin}
       >
-        <Typography
-          variant="h4"
-          fontWeight="bold"
-          textAlign="center"
-          color="primary"
-        >
-          Welcome Back
-        </Typography>
-        <Typography variant="body1" textAlign="center" mb={2}>
-          Log in to access your Invoice Dashboard
-        </Typography>
+        <Box mb={1}>
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+            textAlign="center"
+            color="primary"
+          >
+            Welcome Back
+          </Typography>
+          <Typography variant="body1" textAlign="center">
+            Log in to access your Invoice Dashboard
+          </Typography>
+        </Box>
 
-        {alertShow && <Alert severity={alertSev}>{alertMsg}</Alert>}
+        {!!alertMsg && <Alert severity={alertSev}>{alertMsg}</Alert>}
 
         <Stack width={300}>
           <TextField
@@ -103,7 +117,7 @@ const LoginPage = () => {
             Login
           </Button>
 
-          <Typography fontSize={12} mt={3}>
+          <Typography fontSize={14} mt={3}>
             Don't have an account?{" "}
             <Link
               style={{ textDecoration: "none", color: "#1976D2" }}
