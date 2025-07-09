@@ -14,6 +14,9 @@ import { getUsers, setToken } from "../utils/storage";
 const LoginPage = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: "", password: "" });
+  const [alertShow, setAlertShow] = useState(false);
+  const [alertSev, setAlertSev] = useState("success");
+  const [alertMsg, setAlertMsg] = useState("");
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -61,7 +64,7 @@ const LoginPage = () => {
           Log in to access your Invoice Dashboard
         </Typography>
 
-        <Alert severity="error">This is an error Alert.</Alert>
+        {alertShow && <Alert severity={alertSev}>{alertMsg}</Alert>}
 
         <Stack width={300}>
           <TextField
