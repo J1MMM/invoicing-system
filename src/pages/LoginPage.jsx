@@ -2,6 +2,8 @@ import {
   Alert,
   Box,
   Button,
+  IconButton,
+  InputAdornment,
   Paper,
   Stack,
   TextField,
@@ -10,12 +12,14 @@ import {
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getUsers, isAuthenticated, setToken } from "../utils/storage";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: "", password: "" });
   const [alertSev, setAlertSev] = useState("success");
   const [alertMsg, setAlertMsg] = useState("");
+  const [showPwd, setShowPwd] = useState(false);
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -98,12 +102,26 @@ const LoginPage = () => {
             name="password"
             value={form.password}
             onChange={handleFormChange}
-            type="password"
+            type={showPwd ? "text" : "password"}
             autoComplete="off"
             size="small"
             margin="normal"
             fullWidth
             required
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPwd((p) => !p)}
+                      edge="end"
+                    >
+                      {showPwd ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
           />
           <Typography fontSize={12} color="primary">
             Forgot Password?

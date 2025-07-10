@@ -1,12 +1,53 @@
-# React + Vite
+# 🧾 React Invoicing System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple **Invoicing System** built using **React.js** for the Frontend Web Developer exam. The app allows users to register, log in, and manage invoices with full **CRUD** functionality, all using `localStorage` — no backend required.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+✅ Register / Login / Logout  
+✅ Create, View, Update, and Delete Invoices  
+✅ Add multiple products per invoice  
+✅ Auto-calculated subtotals and total amount  
+✅ Data stored in `localStorage`  
+✅ Responsive UI built with **Material-UI (MUI)**  
+✅ Password masking and basic UX security  
+✅ Clean code with reusable components
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🖥️ Tech Stack
+
+- **React.js**
+- **Material-UI (MUI v5)**
+- **React Router**
+- `localStorage` for persistence
+- No backend / API
+
+---
+
+## 📝 Functionality Overview
+
+### 🔐 Authentication
+
+- Simulated using `localStorage`
+- Basic token saved to check if user is logged in
+- Pages are protected — redirect to login if unauthenticated
+
+### 🧾 Invoice Features
+
+Each invoice includes:
+
+- Invoice Number
+- Invoice Date
+- Customer Name
+- Multiple product entries (name, quantity, price)
+- Auto-calculated subtotal per product
+- Total invoice amount at bottom
+- Edit/Delete actions
+- Empty state display when no data exists
+
+---
+
+## 🗂️ Project Structure

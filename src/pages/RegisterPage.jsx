@@ -2,6 +2,8 @@ import {
   Alert,
   Box,
   Button,
+  IconButton,
+  InputAdornment,
   Paper,
   Stack,
   TextField,
@@ -10,11 +12,13 @@ import {
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUsers, saveUser, setToken } from "../utils/storage";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 function RegisterPage() {
   const [form, setForm] = useState({ username: "", password: "" });
   const [alertMsg, setAlertMsg] = useState("");
   const [alertSev, setAlertSev] = useState("success");
+  const [showPwd, setShowPwd] = useState(false);
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -89,7 +93,7 @@ function RegisterPage() {
           <TextField
             label="Password"
             name="password"
-            type="password"
+            type={showPwd ? "text" : "password"}
             value={form.password}
             onChange={handleFormChange}
             autoComplete="off"
@@ -97,6 +101,20 @@ function RegisterPage() {
             margin="normal"
             fullWidth
             required
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPwd((p) => !p)}
+                      edge="end"
+                    >
+                      {showPwd ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+            }}
           />
 
           <Button
